@@ -1,6 +1,10 @@
 [package]
-name = "aoc_2024"
+name = "aoc_2023"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+
 [dependencies]
+regex = "1.11.1"
+test-case = "3.3.1"
