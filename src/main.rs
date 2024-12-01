@@ -1,5 +1,5 @@
 use std::env;
-use aoc_2023::module_runner::SolutionRunner;
+use aoc_2024::module_runner::SolutionRunner;
 
 fn help() {
     println!("usage:
@@ -11,16 +11,16 @@ part {{1|2}} <integer>
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    match args.len() {
-        3 => {
-            let day: u8 = match args[1].parse() {
+    match &args[..] {
+        [_, day, part, ..] => {
+            let day: u8 = match day.parse() {
                 Ok(x) if 1 <= x && x <= 25 => x,
                 _ => {
                     help();
                     return
                 }
             };
-            let part: u8 = match args[2].parse() {
+            let part: u8 = match part.parse() {
                 Ok(x) if x == 1 || x == 2 => x,
                 _ => {
                     help();
