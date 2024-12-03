@@ -4,6 +4,10 @@ use test_case::test_case;
 
 #[test_case(1, 1, "1151792")]
 #[test_case(1, 2, "21790168")]
+#[test_case(2, 1, "383")]
+#[test_case(2, 2, "436")]
+#[test_case(3, 1, "170778545")]
+#[test_case(3, 2, "82868252")]
 fn completed_solutions(day: u8, part: u8, expected: &str) {
     let actual = SolutionRunner::new(day, part)
         .solve();
