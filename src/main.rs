@@ -1,12 +1,14 @@
-use std::env;
 use aoc_2024::module_runner::SolutionRunner;
+use std::env;
 
 fn help() {
-    println!("usage:
+    println!(
+        "usage:
 day {{1..25}} <integer>
     The day to solve
 part {{1|2}} <integer>
-    The part to solve");
+    The part to solve"
+    );
 }
 
 fn main() {
@@ -17,23 +19,23 @@ fn main() {
                 Ok(x) if 1 <= x && x <= 25 => x,
                 _ => {
                     help();
-                    return
+                    return;
                 }
             };
             let part: u8 = match part.parse() {
                 Ok(x) if x == 1 || x == 2 => x,
                 _ => {
                     help();
-                    return
+                    return;
                 }
             };
             let runner = SolutionRunner::new(day, part);
             match runner.solve() {
                 Ok(x) => println!("{x}"),
-                Err(e) => eprint!("{e}")
+                Err(e) => eprint!("{e}"),
             }
         }
-        _ => help()
+        _ => help(),
     }
-    return
+    return;
 }

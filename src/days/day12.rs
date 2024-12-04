@@ -1,6 +1,5 @@
 use crate::error;
 
-
 pub fn part1(_input: String) -> Result<String, error::Error> {
     Err(error::Error::SolutionNotExists)
 }
@@ -8,7 +7,6 @@ pub fn part1(_input: String) -> Result<String, error::Error> {
 pub fn part2(_input: String) -> Result<String, error::Error> {
     Err(error::Error::SolutionNotExists)
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -21,7 +19,6 @@ mod tests {
         let result = part1(input);
         assert!(result.is_ok());
         assert_eq!(result.unwrap(), "")
-
     }
     #[ignore]
     #[test]
@@ -30,6 +27,5 @@ mod tests {
         let result = part2(input);
         assert!(result.is_ok());
         assert_eq!(result.unwrap(), "")
-
     }
 }

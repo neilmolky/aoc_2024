@@ -1,17 +1,17 @@
+use crate::{days, error};
 use std::fs;
-use crate::{error, days};
 
 #[derive(Debug, Clone)]
 pub struct SolutionRunner {
     day: u8,
-    part: u8
+    part: u8,
 }
 
 impl SolutionRunner {
     pub fn solve(&self) -> Result<String, error::Error> {
         let filename = match self.day {
             x if x < 10 => format!("day0{}.txt", x),
-            x => format!("day{}.txt", x)
+            x => format!("day{}.txt", x),
         };
         let crate_root = env!("CARGO_MANIFEST_DIR");
         let data_dir = format!("{}/data/{}", &crate_root, &filename);
@@ -69,13 +69,14 @@ impl SolutionRunner {
                 (24, 2) => days::day24::part2(d),
                 (25, 1) => days::day25::part1(d),
                 (25, 2) => days::day25::part2(d),
-                (day, part) => panic!("day {day} part {part} should have been excluded from command line input")
-            }
-            Err(e) => Err(error::Error::FileNotFound(e))
+                (day, part) => panic!(
+                    "day {day} part {part} should have been excluded from command line input"
+                ),
+            },
+            Err(e) => Err(error::Error::FileNotFound(e)),
         }
     }
     pub fn new(day: u8, part: u8) -> SolutionRunner {
         SolutionRunner { day, part }
-
     }
 }
