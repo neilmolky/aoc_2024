@@ -9,6 +9,8 @@ use test_case::test_case;
 #[test_case(3, 2, "82868252")]
 #[test_case(4, 1, "2524")]
 #[test_case(4, 2, "1873")]
+#[test_case(5, 1, "7198")]
+#[test_case(5, 2, "4230")]
 fn completed_solutions(day: u8, part: u8, expected: &str) {
     let actual = SolutionRunner::new(day, part).solve();
     assert!(actual.is_ok());
