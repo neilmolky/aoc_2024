@@ -23,11 +23,11 @@ This supports the learning of rust (a new language for me) and the implementatio
 │   └── utils.rs                -> common functions that may be used across days
 ├── target                      -> compiled binaries, ignored by github
 └── tests
-    └── integration_test.rs     -> completed solutions can be revalidated when included here by running through module_runner::SolutionRunner
+    └── integration_test.rs     -> completed solutions can be revalidated provide the input in data/day{x}.txt and your solution answer in the test_case
 
 
 ## Testing
 unittests in each day deal with the test inputs
 integration tests are created using the test-case crate in tests/integration_tests.rs
 integration tests use the module_runner::SolutionRunner to validate the users unique input in data following a correct solution
-integration tests support the ability to refactor the code base safely understanding if there are any breaking changes in the functionality.
+integration tests support the ability to refactor the code base safely understanding if there are any breaking changes in the functionality following refactoring or sharing utilities across different days.
