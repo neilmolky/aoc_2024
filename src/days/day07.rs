@@ -47,29 +47,31 @@ impl Calibration {
         Ok(Calibration(pair.0, pair.1))
     }
 
-    fn recursive_possible_solution<'a>(
-        parent: &'a mut OperationNode,
-        v: &[u64],
-        op: &[Opperation],
-        result: u64,
+    fn recursive_possible_solution(
+        &self,
+        parent: OperationNode,
+        from_index: usize,
+        op: &[Opperation]
     ) -> Option<u64> {
-        if v.is_empty() & (parent.value == result) {
+        if (from_index >= self.1.len()) | (parent.value == self.0) {
+            println!("FOOOOOOOOOO");
             Some(parent.value)
-        } else if v.is_empty() | (parent.value > result) {
+        } else if (from_index >= self.1.len()) | (parent.value > self.0) {
+            println!("BARRRRRRRRR");
             None
         } else {
             op.iter()
                 .flat_map(|o| {
-                    let mut child = parent.result(&v[0], o);
-                    Calibration::recursive_possible_solution(&mut child, &v[1..], op, result)
+                    let child = parent.result(&self.1[from_index], o);
+                    self.recursive_possible_solution(child, from_index+1, op)
                 })
                 .next()
         }
     }
 
     pub fn possible_solution(&self, for_opperators: &[Opperation]) -> Option<u64> {
-        let mut parent = OperationNode::new(*&self.1[0]);
-        Calibration::recursive_possible_solution(&mut parent, &self.1[..], for_opperators, self.0)
+        let parent = OperationNode::new(*&self.1[0]);
+        self.recursive_possible_solution(parent, 0, for_opperators)
     }
 }
 
@@ -101,13 +103,14 @@ pub fn part2(input: String) -> Result<String, error::Error> {
         Opperation::Multiply,
         Opperation::Concatenation,
     ];
-    let result: u64 = input
+    let result: Vec<u64> = input
         .lines()
         .map(calibrations)
         .map(|r| r.unwrap().1)
         .flat_map(|c| c.possible_solution(&operations))
-        .sum();
-    Ok(result.to_string())
+        .collect();
+    dbg!(&result);
+    Ok(result.into_iter().sum::<u64>().to_string())
 }
 
 #[cfg(test)]

@@ -35,7 +35,7 @@ impl Memory {
         mem_chunks
     }
 
-    fn position(&self) -> usize {
+    fn _position(&self) -> usize {
         match self {
             Memory::File {
                 id: _,
