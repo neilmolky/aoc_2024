@@ -20,7 +20,7 @@ enum Opperation {
 }
 
 struct OperationNode {
-    pub value: u64,
+    value: u64,
 }
 
 impl OperationNode {
@@ -49,29 +49,25 @@ impl Calibration {
 
     fn recursive_possible_solution(
         &self,
-        parent: OperationNode,
+        node: OperationNode,
         from_index: usize,
-        op: &[Opperation]
+        op: &[Opperation],
     ) -> Option<u64> {
-        if (from_index >= self.1.len()) | (parent.value == self.0) {
-            println!("FOOOOOOOOOO");
-            Some(parent.value)
-        } else if (from_index >= self.1.len()) | (parent.value > self.0) {
-            println!("BARRRRRRRRR");
+        if (from_index >= self.1.len()) & (node.value == self.0) {
+            Some(node.value)
+        } else if (from_index >= self.1.len()) | (node.value > self.0) {
             None
         } else {
             op.iter()
-                .flat_map(|o| {
-                    let child = parent.result(&self.1[from_index], o);
-                    self.recursive_possible_solution(child, from_index+1, op)
-                })
+                .map(|o| node.result(&self.1[from_index], o))
+                .flat_map(|child| self.recursive_possible_solution(child, from_index + 1, op))
                 .next()
         }
     }
 
     pub fn possible_solution(&self, for_opperators: &[Opperation]) -> Option<u64> {
         let parent = OperationNode::new(*&self.1[0]);
-        self.recursive_possible_solution(parent, 0, for_opperators)
+        self.recursive_possible_solution(parent, 1, for_opperators)
     }
 }
 

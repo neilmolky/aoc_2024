@@ -1,4 +1,4 @@
-use std::collections::{HashMap, HashSet, VecDeque};
+use std::collections::HashMap;
 
 use crate::error;
 
@@ -13,17 +13,21 @@ impl Point {
             (point, Direction::South) => positions
                 .get_key_value(&Point(point.0 + 1, point.1))
                 .map(|(k, _)| *k),
-            (point, Direction::West) => if point.1 <= 0 {
+            (point, Direction::West) => {
+                if point.1 <= 0 {
                     None
                 } else {
                     Some(Point(point.0, point.1.abs_diff(1)))
                 }
-            (point, Direction::North) => if point.0 <= 0 {
+            }
+            (point, Direction::North) => {
+                if point.0 <= 0 {
                     None
                 } else {
                     Some(Point(point.0.abs_diff(1), point.1))
                 }
             }
+        }
     }
 }
 
@@ -126,7 +130,9 @@ impl LabMap {
     }
 
     fn next_point(&self) -> Option<Point> {
-        self.guard_location.point.next_point(self.guard_location.direction, &self.positions)
+        self.guard_location
+            .point
+            .next_point(self.guard_location.direction, &self.positions)
     }
     fn turn_guard(&mut self) {
         self.guard_location.direction = self.guard_location.direction.right_turn()
@@ -191,7 +197,7 @@ pub fn part1(input: String) -> Result<String, error::Error> {
 
 pub fn part2(input: String) -> Result<String, error::Error> {
     let mut lab = LabMap::from_input(&input);
-    let starting_guard = lab.guard_location.point.clone();
+    let _starting_guard = lab.guard_location.point.clone();
     while let NextSpace::Clear | NextSpace::Obstructed = lab.next_move() {
         if let NextSpace::Obstructed = lab.next_move() {
             lab.turn_guard()
@@ -202,12 +208,11 @@ pub fn part2(input: String) -> Result<String, error::Error> {
 
     let mut possible_new_obstructions: Vec<Point> = Vec::new();
     for (placement_point, first_pass_result) in &lab.positions {
-        if let Space::Visited(place_dirs) = first_pass_result {
+        if let Space::Visited(_place_dirs) = first_pass_result {
             possible_new_obstructions.push(*placement_point);
         }
     }
     dbg!(&possible_new_obstructions);
-    
 
     let mut counter = 0;
     for p in possible_new_obstructions {
