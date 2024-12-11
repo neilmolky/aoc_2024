@@ -5,6 +5,7 @@ Solutions that were already written in python are refactored into rust code.
 This supports the learning of rust (a new language for me) and the implementation of a scaffolding to use again in rust for the 2024 challenge
 
 ## Lib Structure
+```
 ├── Cargo.lock
 ├── Cargo.toml                  -> project config including dependencies
 ├── data                        -> users custom input, ignored by github [please dont share your user input!](https://adventofcode.com/2023/about)
@@ -24,6 +25,7 @@ This supports the learning of rust (a new language for me) and the implementatio
 ├── target                      -> compiled binaries, ignored by github
 └── tests
     └── integration_test.rs     -> completed solutions can be revalidated provide the input in data/day{x}.txt and your solution answer in the test_case
+```
 
 
 ## Testing
