@@ -8,7 +8,7 @@ pub struct SolutionRunner {
 }
 
 impl SolutionRunner {
-    pub fn solve(&self) -> Result<String, error::Error> {
+    pub fn solve<'a>(&self) -> Result<String, error::Error> {
         let filename = match self.day {
             x if x < 10 => format!("day0{}.txt", x),
             x => format!("day{}.txt", x),
