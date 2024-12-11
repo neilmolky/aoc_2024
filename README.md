@@ -1,8 +1,7 @@
-# Advent Of Code 2023 refactor
+# Advent Of Code 2024
 
 ## Purpose
-Solutions that were already written in python are refactored into rust code.
-This supports the learning of rust (a new language for me) and the implementation of a scaffolding to use again in rust for the 2024 challenge
+Solutions for aoc 2024 written in rust.
 
 ## Lib Structure
 ```
@@ -33,3 +32,4 @@ unittests in each day deal with the test inputs
 integration tests are created using the test-case crate in tests/integration_tests.rs
 integration tests use the module_runner::SolutionRunner to validate the users unique input in data following a correct solution
 integration tests support the ability to refactor the code base safely understanding if there are any breaking changes in the functionality following refactoring or sharing utilities across different days.
+It also provides ability to benchmark code where performance upgrades would be most needed.
