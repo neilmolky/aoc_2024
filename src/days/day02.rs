@@ -6,6 +6,7 @@ use nom::{
     multi::separated_list1,
     IResult,
 };
+
 #[derive(Debug, Copy, Clone)]
 enum Order {
     Initialised(i32),

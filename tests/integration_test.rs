@@ -1,8 +1,8 @@
 use aoc_2024::module_runner::SolutionRunner;
-use test_case::test_case;
 use std::fmt;
 use std::process::ExitCode;
 use std::process::Termination;
+use test_case::test_case;
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct TestCode(pub String);
@@ -10,8 +10,7 @@ pub struct TestCode(pub String);
 impl fmt::Display for TestCode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match &self {
-
-            TestCode(e) => write!(f, "{e}")
+            TestCode(e) => write!(f, "{e}"),
         }
     }
 }
